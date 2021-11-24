@@ -21,7 +21,12 @@ namespace EFCoreExperiment.JsonSearching
         {
             await Setup(cancellationToken);
 
-            await foreach (var myEntity in _db.MyEntities)
+            var entities = _db.MyEntities
+                .Where(x => 
+                    MyDbFunctions.GetTranslations(x.Translations, "de", "title").Contains("Meine")
+                );
+
+            foreach (var myEntity in entities)
             {
                 PrintInfo(myEntity, "en");
                 PrintInfo(myEntity, "de");

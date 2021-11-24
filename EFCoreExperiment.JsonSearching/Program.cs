@@ -60,7 +60,6 @@ namespace EFCoreExperiment.JsonSearching
                         var connectionString = hostCtx.Configuration.GetConnectionString("Experiment");
                         opts.UseNpgsql(connectionString);
                         opts.ConfigureWarnings(c => c.Log(
-                            (RelationalEventId.CommandExecuted, LogLevel.Debug),
                             (CoreEventId.ContextInitialized, LogLevel.Debug)
                         ));
                     });
